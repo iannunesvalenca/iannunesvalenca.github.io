@@ -70,7 +70,7 @@ function renderShell() {
   app.innerHTML = `
     <header class="site-header">
       <div class="container header-inner">
-        <a href="#top" class="brand-name">${escapeHtml(profile.name)}</a>
+        <a href="#top" class="brand-name">Portfolio</a>
 
         <nav class="nav-links" aria-label="Primary navigation">
           <a href="#figures">Figures</a>
@@ -84,6 +84,7 @@ function renderShell() {
       <section class="intro">
         <div class="container">
           <h1 class="intro-title">${escapeHtml(profile.headline)}</h1>
+          <p class="intro-subtitle">${escapeHtml(profile.subtitle)}</p>
           <p class="intro-bio">${escapeHtml(profile.bio)}</p>
           <div class="intro-links">
             <a href="${profile.links.scholar}" target="_blank" rel="noopener noreferrer">Google Scholar</a>
