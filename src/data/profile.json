@@ -5,7 +5,7 @@
   "headline": "Selected figures from viral metagenomics, phylogenetics, and spatial epidemiology.",
   "bio": "Postdoctoral researcher in computational biology at the University of Tübingen and PhD candidate in Infectious Diseases at the University of São Paulo and Imperial College London. This page collects selected data visualizations, maps, phylogenies, and workflow diagrams from my ongoing doctoral thesis and published articles.",
   "links": {
-    "github": "https://github.com/iannunesvalenca-creator",
+    "github": "https://github.com/iannunesvalenca",
     "scholar": "https://scholar.google.com/citations?user=T5PzeAsAAAAJ&hl=en",
     "email": "iannunesvalenca@gmail.com"
   },
@@ -46,13 +46,6 @@
     }
   ],
   "publications": [
-    {
-      "id": "thesis",
-      "title": "Nanopore metagenomics for respiratory virus detection and genomic characterization in São Paulo",
-      "venue": "PhD Thesis (in progress), University of São Paulo & Imperial College London",
-      "year": 2026,
-      "doi": ""
-    },
     {
       "id": "B3.2",
       "title": "Identification of vertebrate hosts of mosquito blood meals following the 2017 to 2018 yellow fever outbreak in São Paulo State",

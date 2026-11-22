@@ -108,9 +108,9 @@ function renderShell() {
         </div>
       </section>
 
-      <section class="section" id="publications">
+      <section class="section reveal" id="publications">
         <div class="container">
-          <h2 class="section-title">Thesis &amp; Selected Publications</h2>
+          <h2 class="section-title">Selected Publications</h2>
           <div class="pub-list">
             ${profile.publications
               .map((pub) => {
@@ -142,7 +142,7 @@ function renderShell() {
         </div>
       </section>
 
-      <section class="section" id="about">
+      <section class="section reveal" id="about">
         <div class="container">
           <h2 class="section-title">About &amp; Tools</h2>
           <div class="about-grid">
@@ -267,8 +267,9 @@ function renderGallery() {
     .map((f, idx) => {
       const spanFull = (idx === 0 && f.aspect >= 1.45 && list.length > 2) || f.aspect >= 2.1;
       const venueText = f.sourceId === 'thesis' ? 'PhD Thesis (in progress)' : `${f.venue}, ${f.year}`;
+      const staggerMs = idx === 0 ? 0 : (idx % 2) * 80;
       return `
-        <article class="plate-card ${spanFull ? 'span-full' : ''}" data-open="${f.id}" role="button" tabindex="0">
+        <article class="plate-card reveal ${spanFull ? 'span-full' : ''}" data-open="${f.id}" style="transition-delay:${staggerMs}ms" role="button" tabindex="0">
           <div class="plate-frame">
             <img src="./${f.thumb}" alt="${escapeHtml(f.title)}" loading="${idx < 3 ? 'eager' : 'lazy'}" />
           </div>
@@ -297,6 +298,39 @@ function renderGallery() {
       }
     });
   });
+
+  observeReveals();
+}
+
+let revealObserver: IntersectionObserver | null = null;
+
+function observeReveals() {
+  if (revealObserver) revealObserver.disconnect();
+
+  const targets = document.querySelectorAll<HTMLElement>('.reveal:not(.is-visible)');
+  if (!targets.length) return;
+
+  if (
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    !('IntersectionObserver' in window)
+  ) {
+    targets.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  revealObserver = new IntersectionObserver(
+    (entries, obs) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      }
+    },
+    { threshold: 0.08, rootMargin: '0px 0px -36px 0px' }
+  );
+
+  targets.forEach((el) => revealObserver!.observe(el));
 }
 
 function applyTransform() {
