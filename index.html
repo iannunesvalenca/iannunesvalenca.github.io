@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ian Nunes Valença | Scientific Data Visualization Portfolio</title>
+    <meta
+      name="description"
+      content="Curated scientific figures, maps, phylogenetic trees, and clinical metagenomics visualizations by Ian Nunes Valença, Computational Biologist at the University of Tübingen."
+    />
+    <meta property="og:title" content="Ian Nunes Valença | Scientific Data Visualization Portfolio" />
+    <meta
+      property="og:description"
+      content="Curated data science figures from viral metagenomics, phylogenetics, and spatial epidemiology."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        const stored = localStorage.getItem('iv-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
