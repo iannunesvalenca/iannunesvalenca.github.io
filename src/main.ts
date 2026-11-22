@@ -100,7 +100,7 @@ function renderShell() {
             <div class="filter-tabs" id="filterTabs"></div>
             <span class="filter-count" id="filterCount"></span>
           </div>
-          <div class="gallery-grid" id="galleryGrid"></div>
+          <div class="gallery-rows" id="galleryGrid"></div>
         </div>
       </section>
 
@@ -250,28 +250,61 @@ function renderGallery() {
     countEl.textContent = `${list.length} ${list.length === 1 ? 'figure' : 'figures'}`;
   }
 
-  grid.innerHTML = list
-    .map((f, idx) => {
-      const spanFull = (idx === 0 && list.length > 2) || f.aspect >= 2.1;
-      const venueText = f.sourceId === 'thesis' ? 'PhD Thesis (in progress)' : `${f.venue}, ${f.year}`;
-      const staggerMs = idx === 0 ? 60 : (idx % 2) * 140;
-      return `
-        <article class="plate-card reveal ${spanFull ? 'span-full' : ''}" data-open="${f.id}" style="transition-delay:${staggerMs}ms" role="button" tabindex="0">
-          <div class="plate-frame">
-            <img src="./${f.thumb}" alt="${escapeHtml(f.title)}" loading="${idx < 3 ? 'eager' : 'lazy'}" />
-          </div>
-          <div class="plate-caption-block">
-            <h2 class="plate-title">${escapeHtml(f.title)}</h2>
-            <div class="plate-meta">
-              <span class="plate-num">${f.plate}</span>
-              <span>&middot;</span>
-              <span>${escapeHtml(venueText)}</span>
-              <span>&middot;</span>
-              <span>${escapeHtml(f.figureLabel)}</span>
-            </div>
-          </div>
-        </article>
-      `;
+  // Build aspect-ratio-aware asymmetrical rows so every figure maximizes its natural space
+  const rows: FigureItem[][] = [];
+  let i = 0;
+  while (i < list.length) {
+    const cur = list[i];
+    // Lead centerpiece (first item) or ultra-wide panorama gets a full-width showcase row
+    if ((i === 0 && list.length > 2) || cur.aspect >= 2.0) {
+      rows.push([cur]);
+      i += 1;
+      continue;
+    }
+    const next = list[i + 1];
+    if (next && next.aspect < 2.0) {
+      rows.push([cur, next]);
+      i += 2;
+    } else {
+      rows.push([cur]);
+      i += 1;
+    }
+  }
+
+  let globalIdx = 0;
+  grid.innerHTML = rows
+    .map((row) => {
+      const isSingle = row.length === 1;
+      const cardsHtml = row
+        .map((f, colIdx) => {
+          const idx = globalIdx++;
+          const venueText =
+            f.sourceId === 'thesis' ? 'PhD Thesis (in progress)' : `${f.venue}, ${f.year}`;
+          const staggerMs = idx === 0 ? 60 : colIdx * 150;
+          // Proportional flex weight matches natural aspect ratios so paired figures share the same visual height
+          const flexStyle = isSingle ? '' : `flex: ${f.aspect.toFixed(3)} 1 0%;`;
+          const imgSrc = isSingle ? `./${f.full}` : `./${f.thumb}`;
+          return `
+            <article class="plate-card reveal" data-open="${f.id}" style="${flexStyle} transition-delay:${staggerMs}ms" role="button" tabindex="0">
+              <div class="plate-media">
+                <img src="${imgSrc}" alt="${escapeHtml(f.title)}" width="${f.width}" height="${f.height}" loading="${idx < 3 ? 'eager' : 'lazy'}" />
+              </div>
+              <div class="plate-caption-block">
+                <h2 class="plate-title">${escapeHtml(f.title)}</h2>
+                <div class="plate-meta">
+                  <span class="plate-num">${f.plate}</span>
+                  <span>&middot;</span>
+                  <span>${escapeHtml(venueText)}</span>
+                  <span>&middot;</span>
+                  <span>${escapeHtml(f.figureLabel)}</span>
+                </div>
+              </div>
+            </article>
+          `;
+        })
+        .join('');
+
+      return `<div class="gallery-row ${isSingle ? 'single-row' : ''}">${cardsHtml}</div>`;
     })
     .join('');
 
