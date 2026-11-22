@@ -1,13 +1,14 @@
 :root {
-  --bg: #ffffff;
-  --surface: #ffffff;
-  --subtle: #f5f4f0;
-  --border: #eae8e3;
-  --border-strong: #d4d0c7;
-  --ink: #161614;
-  --ink-secondary: #58554e;
-  --ink-muted: #868279;
-  --accent: #184e4f;
+  --bg: #0f1724;
+  --surface: #152033;
+  --subtle: #1c2a42;
+  --paper-plate: #f5f7fa;
+  --border: rgba(210, 224, 245, 0.12);
+  --border-strong: rgba(210, 224, 245, 0.26);
+  --ink: #eef3fa;
+  --ink-secondary: #b4c3d9;
+  --ink-muted: #7f93b0;
+  --accent: #7cc4fa;
   --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -27,7 +28,9 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
+  background: radial-gradient(ellipse 110% 70% at 50% 0%, #16233a 0%, #0f1724 52%, #0b111c 100%);
+  background-color: var(--bg);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 15px;
@@ -317,7 +320,18 @@ button {
 
 .plate-media {
   width: 100%;
+  border-radius: 8px;
   overflow: hidden;
+  background: var(--paper-plate);
+  box-shadow: 0 18px 44px rgba(4, 10, 20, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.45s ease;
+}
+
+.gallery-row.single-row .plate-media {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .plate-media img {
@@ -325,7 +339,7 @@ button {
   height: auto;
   display: block;
   mix-blend-mode: multiply;
-  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.35s ease;
+  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .gallery-row.single-row .plate-media img {
@@ -333,6 +347,10 @@ button {
   width: auto;
   max-width: 100%;
   margin: 0 auto;
+}
+
+.plate-card:hover .plate-media {
+  box-shadow: 0 24px 56px rgba(4, 10, 20, 0.58), 0 0 0 1px rgba(124, 196, 250, 0.25);
 }
 
 .plate-card:hover .plate-media img {
@@ -540,8 +558,8 @@ button {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(15, 15, 14, 0.76);
-  backdrop-filter: blur(6px);
+  background: rgba(7, 12, 22, 0.84);
+  backdrop-filter: blur(8px);
   display: none;
   align-items: center;
   justify-content: center;
@@ -557,7 +575,7 @@ button {
   max-width: 1340px;
   height: min(92vh, 860px);
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: 10px;
   display: grid;
   grid-template-columns: minmax(0, 1.6fr) 370px;
@@ -566,7 +584,7 @@ button {
 
 .inspector-stage {
   position: relative;
-  background: #f5f4f0;
+  background: var(--paper-plate);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -583,6 +601,7 @@ button {
   max-width: 92%;
   max-height: 88%;
   object-fit: contain;
+  mix-blend-mode: multiply;
   transform-origin: center center;
   transition: transform 0.08s ease-out;
   pointer-events: none;
