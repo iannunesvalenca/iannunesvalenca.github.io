@@ -1,10 +1,9 @@
 {
   "name": "Ian Nunes Valença",
-  "shortName": "Ian N. Valença",
-  "role": "Computational Biologist & Bioinformatician",
+  "role": "Computational Biologist",
   "location": "Tübingen, Germany",
-  "headline": "Scientific figures from viral metagenomics, phylogenetics, and spatial epidemiology.",
-  "bio": "I am a postdoctoral researcher in computational biology at the University of Tübingen. I completed my PhD in Infectious Diseases at the University of São Paulo and Imperial College London, where I studied nanopore metagenomics for respiratory virus detection and genomic surveillance. This site gathers the best data visualizations, maps, phylogenies, and analytical schematics I created across my doctoral thesis and published research.",
+  "headline": "Selected figures from viral metagenomics, phylogenetics, and spatial epidemiology.",
+  "bio": "Postdoctoral researcher in computational biology at the University of Tübingen and PhD candidate in Infectious Diseases at the University of São Paulo and Imperial College London. This page collects selected data visualizations, maps, phylogenies, and workflow diagrams from my ongoing doctoral thesis and published articles.",
   "links": {
     "github": "https://github.com/iannunesvalenca-creator",
     "scholar": "https://scholar.google.com/citations?user=T5PzeAsAAAAJ&hl=en",
@@ -13,115 +12,95 @@
   "affiliations": [
     {
       "role": "Postdoctoral Researcher, Computational Biology",
-      "institution": "University of Tübingen",
-      "location": "Germany",
+      "institution": "University of Tübingen, Germany",
       "period": "2026 to Present"
     },
     {
-      "role": "PhD in Infectious Diseases",
+      "role": "PhD Candidate in Infectious Diseases",
       "institution": "University of São Paulo & Imperial College London",
-      "location": "Brazil & UK",
-      "period": "2021 to 2026"
+      "period": "2021 to Present"
     },
     {
       "role": "Bioinformatics Analyst, Clinical Genomics",
-      "institution": "CIGEN (Integrated Center for Genetic Diseases)",
-      "location": "São Paulo, Brazil",
+      "institution": "CIGEN, São Paulo, Brazil",
       "period": "2025 to 2026"
     },
     {
       "role": "MSc in Science",
-      "institution": "University of São Paulo",
-      "location": "Brazil",
+      "institution": "University of São Paulo, Brazil",
       "period": "2019 to 2021"
     }
   ],
   "toolkit": [
     {
-      "group": "Statistical & Data Graphics",
-      "items": ["R (ggplot2)", "Python (matplotlib, seaborn, pandas)", "Statistical modeling", "XGBoost & scikit-learn"]
+      "group": "Data & Statistics",
+      "items": "R (ggplot2), Python (pandas, matplotlib, scikit-learn, XGBoost), statistical modeling"
     },
     {
       "group": "Genomics & Phylogenetics",
-      "items": ["IQ-TREE 2", "BEAST", "Microreact", "Snakemake & Nextflow", "Oxford Nanopore & Illumina"]
+      "items": "IQ-TREE 2, BEAST, Microreact, Snakemake, Nextflow, Oxford Nanopore, Illumina"
     },
     {
-      "group": "Cartography, 3D & Design",
-      "items": ["QGIS", "Blender 5.3 (Cycles)", "OpenStreetMap", "Adobe Illustrator", "Vector layout & typography"]
+      "group": "Maps, 3D & Layout",
+      "items": "QGIS, Blender (Cycles), OpenStreetMap, Adobe Illustrator"
     }
   ],
   "publications": [
     {
       "id": "thesis",
       "title": "Nanopore metagenomics for respiratory virus detection and genomic characterization in São Paulo",
-      "venue": "PhD Thesis, University of São Paulo & Imperial College London",
+      "venue": "PhD Thesis (in progress), University of São Paulo & Imperial College London",
       "year": 2026,
-      "role": "Author",
-      "doi": "",
-      "hasFigures": true
+      "doi": ""
     },
     {
       "id": "B3.2",
       "title": "Identification of vertebrate hosts of mosquito blood meals following the 2017 to 2018 yellow fever outbreak in São Paulo State",
       "venue": "Parasites & Vectors",
       "year": 2026,
-      "role": "Co-author (3rd)",
-      "doi": "10.1186/s13071-026-07760-z",
-      "hasFigures": true
+      "doi": "10.1186/s13071-026-07760-z"
     },
     {
       "id": "B3.1",
       "title": "Genomic epidemiology of canine distemper virus (CDV) in Neotropical primates in Brazil reveals multiple spillover events and convergent evolution at hemagglutinin residue 519",
       "venue": "bioRxiv (Preprint)",
       "year": 2026,
-      "role": "Co-author (3rd)",
-      "doi": "10.64898/2026.09.01.748675",
-      "hasFigures": true
-    },
-    {
-      "id": "B2.1",
-      "title": "First report of Wenzhou sobemo-like virus 4 in Aedes albopictus (Diptera: Culicidae) in Latin America",
-      "venue": "Viruses",
-      "year": 2022,
-      "role": "Co-author (2nd)",
-      "doi": "10.3390/v14112341",
-      "hasFigures": true
-    },
-    {
-      "id": "B1.1",
-      "title": "Rapid viral metagenomics using SMART-9N amplification and nanopore sequencing",
-      "venue": "Wellcome Open Research",
-      "year": 2023,
-      "role": "Co-author",
-      "doi": "10.12688/wellcomeopenres.17170.2",
-      "hasFigures": true
+      "doi": "10.64898/2026.09.01.748675"
     },
     {
       "id": "B4.2",
       "title": "Evolution and spillover dynamics of yellow fever at the forest-urban interface in Brazil",
       "venue": "Nature Microbiology",
       "year": 2026,
-      "role": "Co-author",
-      "doi": "10.1038/s41564-026-02302-w",
-      "hasFigures": false
+      "doi": "10.1038/s41564-026-02302-w"
     },
     {
       "id": "B4.1",
       "title": "Genomic characterization of Sabiá virus in Brazil, 2019 to 2020: implications for diagnostics, virus evolution, and receptor binding",
       "venue": "PLOS Neglected Tropical Diseases",
       "year": 2026,
-      "role": "Co-author",
-      "doi": "10.1371/journal.pntd.0013858",
-      "hasFigures": false
+      "doi": "10.1371/journal.pntd.0013858"
+    },
+    {
+      "id": "B1.1",
+      "title": "Rapid viral metagenomics using SMART-9N amplification and nanopore sequencing",
+      "venue": "Wellcome Open Research",
+      "year": 2023,
+      "doi": "10.12688/wellcomeopenres.17170.2"
     },
     {
       "id": "B4.4",
       "title": "Main autopsy findings of visceral involvement by fatal mpox in patients with AIDS: necrotising nodular pneumonia, nodular ulcerative colitis, and diffuse vasculopathy",
       "venue": "The Lancet Infectious Diseases",
       "year": 2023,
-      "role": "Co-author",
-      "doi": "10.1016/S1473-3099(23)00574-1",
-      "hasFigures": false
+      "doi": "10.1016/S1473-3099(23)00574-1"
+    },
+    {
+      "id": "B2.1",
+      "title": "First report of Wenzhou sobemo-like virus 4 in Aedes albopictus (Diptera: Culicidae) in Latin America",
+      "venue": "Viruses",
+      "year": 2022,
+      "doi": "10.3390/v14112341"
     }
   ]
 }
