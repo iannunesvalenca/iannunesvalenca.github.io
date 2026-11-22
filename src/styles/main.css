@@ -14,19 +14,6 @@
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-:root[data-theme='dark'] {
-  --bg: #111110;
-  --surface: #171715;
-  --subtle: #1f1f1c;
-  --plate-mat: #f7f6f3;
-  --border: #262622;
-  --border-strong: #3a3934;
-  --ink: #f1efe9;
-  --ink-secondary: #b5b0a5;
-  --ink-muted: #7f7b72;
-  --accent: #74c0c0;
-}
-
 *,
 *::before,
 *::after {
@@ -266,22 +253,35 @@ button {
   cursor: pointer;
 }
 
-/* Subtle Scroll Reveal */
+/* Gradual, Silky Scroll Reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(26px) scale(0.988);
+  transition: opacity 1.15s cubic-bezier(0.25, 0.1, 0.25, 1),
+    transform 1.25s cubic-bezier(0.22, 0.61, 0.36, 1);
   will-change: opacity, transform;
 }
 
 .reveal.is-visible {
   opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.plate-card .plate-caption-block {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) 0.16s,
+    transform 1s cubic-bezier(0.22, 0.61, 0.36, 1) 0.16s;
+}
+
+.plate-card.is-visible .plate-caption-block {
+  opacity: 1;
   transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal,
+  .plate-card .plate-caption-block {
     opacity: 1;
     transform: none;
     transition: none;

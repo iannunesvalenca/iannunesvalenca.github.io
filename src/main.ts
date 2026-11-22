@@ -72,16 +72,11 @@ function renderShell() {
       <div class="container header-inner">
         <a href="#top" class="brand-name">${escapeHtml(profile.name)}</a>
 
-        <div class="header-right">
-          <nav class="nav-links" aria-label="Primary navigation">
-            <a href="#figures">Figures</a>
-            <a href="#publications">Publications</a>
-            <a href="#about">About</a>
-          </nav>
-          <button class="theme-btn" id="themeToggle" type="button" aria-label="Toggle color theme">
-            <span id="themeIcon"></span>
-          </button>
-        </div>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#figures">Figures</a>
+          <a href="#publications">Publications</a>
+          <a href="#about">About</a>
+        </nav>
       </div>
     </header>
 
@@ -216,15 +211,6 @@ function renderShell() {
   `;
 }
 
-function updateThemeIcon() {
-  const isDark = document.documentElement.dataset.theme === 'dark';
-  const el = document.getElementById('themeIcon');
-  if (!el) return;
-  el.innerHTML = isDark
-    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>'
-    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-}
-
 function renderTabs() {
   const el = document.getElementById('filterTabs')!;
   el.innerHTML = FILTERS.map(
@@ -267,7 +253,7 @@ function renderGallery() {
     .map((f, idx) => {
       const spanFull = (idx === 0 && f.aspect >= 1.45 && list.length > 2) || f.aspect >= 2.1;
       const venueText = f.sourceId === 'thesis' ? 'PhD Thesis (in progress)' : `${f.venue}, ${f.year}`;
-      const staggerMs = idx === 0 ? 0 : (idx % 2) * 80;
+      const staggerMs = idx === 0 ? 60 : (idx % 2) * 140;
       return `
         <article class="plate-card reveal ${spanFull ? 'span-full' : ''}" data-open="${f.id}" style="transition-delay:${staggerMs}ms" role="button" tabindex="0">
           <div class="plate-frame">
@@ -322,12 +308,14 @@ function observeReveals() {
     (entries, obs) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
+          requestAnimationFrame(() => {
+            entry.target.classList.add('is-visible');
+          });
           obs.unobserve(entry.target);
         }
       }
     },
-    { threshold: 0.08, rootMargin: '0px 0px -36px 0px' }
+    { threshold: 0.02, rootMargin: '0px 0px 40px 0px' }
   );
 
   targets.forEach((el) => revealObserver!.observe(el));
@@ -452,14 +440,6 @@ function stepInspector(delta: number) {
 }
 
 function wireEvents() {
-  document.getElementById('themeToggle')?.addEventListener('click', () => {
-    const isDark = document.documentElement.dataset.theme === 'dark';
-    const next = isDark ? 'light' : 'dark';
-    document.documentElement.dataset.theme = next;
-    localStorage.setItem('iv-theme', next);
-    updateThemeIcon();
-  });
-
   document.querySelectorAll<HTMLButtonElement>('[data-source]').forEach((btn) => {
     btn.onclick = () => {
       state.sourceFilter = btn.dataset.source || 'all';
@@ -543,7 +523,6 @@ function checkInitialHash() {
 }
 
 renderShell();
-updateThemeIcon();
 renderTabs();
 renderGallery();
 wireEvents();
