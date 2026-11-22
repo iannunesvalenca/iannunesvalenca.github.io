@@ -252,7 +252,7 @@ function renderGallery() {
 
   grid.innerHTML = list
     .map((f, idx) => {
-      const spanFull = (idx === 0 && f.aspect >= 1.45 && list.length > 2) || f.aspect >= 2.1;
+      const spanFull = (idx === 0 && list.length > 2) || f.aspect >= 2.1;
       const venueText = f.sourceId === 'thesis' ? 'PhD Thesis (in progress)' : `${f.venue}, ${f.year}`;
       const staggerMs = idx === 0 ? 60 : (idx % 2) * 140;
       return `
